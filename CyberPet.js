@@ -132,6 +132,7 @@ class CyberPet {
         this.printStatus();        
     }
 
+
     printStatus() {
         let status;
         if (this.isDead) {
@@ -175,7 +176,58 @@ class CyberPet {
     }
 }
 
-let jon = new CyberPet("Jon");
+class Bunny extends CyberPet {
+    constructor(name) {
+        super(name);
+    }
+
+    hop() {
+        // console.log("hopping");
+        this.play();
+        this.play();
+    }
+
+}
+
+class Dog extends CyberPet {
+    constructor(name) {
+        super(name);
+    }
+    eat() {
+        // console.log("hopping");
+        super.eat();
+        this.play();
+    }
+}
+
+class Cat extends CyberPet {
+    constructor(name) {
+        super(name);
+    }
+    roam() {
+        // console.log("hopping");
+        this.eat();
+        this.play();
+        this.drink(5);
+    }
+}
+
+
+
+
+let jon = new Dog("Jon");
 jon.incrementDay();
+jon.eat();
 jon.timePassing(10);
 console.log(jon.HP);
+
+
+let rosa = new Bunny("Rosa");
+rosa.incrementDay();
+rosa.hop();
+rosa.timePassing(10);
+
+let donald = new Cat("Don");
+donald.incrementDay();
+donald.roam();
+donald.timePassing(10);
