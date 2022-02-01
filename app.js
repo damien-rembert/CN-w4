@@ -82,3 +82,104 @@ class EmployeeCar extends Car {
 }
 
 
+// Activity (1)
+// Write a simple function which logs “Hello Code
+// Nation” to the console.
+// Then write a higher order function which will run
+// our simple function five times, even though you
+// only call it one time.
+// Hint: Pass the simple function as a parameter, and
+// this will involve a for loop.
+
+function simpleFun() {
+    console.log("Hello Code Nation");
+}
+
+
+// the function fn will be executed when it's accessed to be passed as an argument?
+// any way to not do that?
+function runThisFiveTimes(fn) {
+    for (let i = 0; i < 5; i++) {
+        console.log("before");
+        console.log("i = " + i);
+        simpleFun();
+        console.log("after");
+    }
+}
+
+runThisFiveTimes(simpleFun());
+
+
+// Activity (2)
+// The array method .map is an example of a higher
+// order function.
+// Declare a variable with five numbers, then
+// use .map to iterate through the array and multiply
+// each array item by 3.
+
+
+
+let arrayToMap = [1, 2, 3, 4, 5];
+function triple(numberToTriple) {
+    return (numberToTriple * 3);
+}
+
+console.log(arrayToMap);
+
+console.log(arrayToMap.map(number => triple(number)));
+
+
+
+// Activity (3)
+// Test this function to make
+// sure it works by passing a
+// number to the doMaths
+// function, then passing a
+// number and one of the four
+// maths functions, to the
+// returned function.
+
+const add = (a,b) => {
+return a+b;
+}
+const subtract = (a,b) => {
+return a - b;
+}
+const multiply = (a,b) => {
+return a*b;
+}
+const divide = (a,b) => {
+return a/b;
+}
+const doMaths = (num1) => {
+return (num2, fn) => {
+return fn(num1, num2);
+}
+}
+
+console.log("=== ZELLER'S algo ===");
+
+let d = 24;
+let m = 5;
+let y = 1985;
+
+// let d = 1;
+// let m = 2;
+// let y = 2022;
+
+let f;
+let l;
+let s;
+let x;
+
+if (m < 3) {
+    m = m + 12;
+    y = y - 1;
+}
+
+f = Math.floor(y/100);
+l = y - 100 * f;
+
+s = Math.floor(2.6 * m - 5.39) + Math.floor(l / 4) + Math.floor(f / 4) + d + l - 2 * f;
+x = s - (7 * Math.floor(s / 7));
+console.log(x);
