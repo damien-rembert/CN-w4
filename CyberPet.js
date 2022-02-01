@@ -8,6 +8,17 @@
 // – if you don’t play, it gets bored, if you do, it’s happy,
 // but gets thirsty, that kind of thing.
 
+function normalise(value) {
+    if (value > 100) {
+        value = 100;
+    }
+    if (value < 0) {
+        value = 0;
+    }
+    return value;
+}
+
+
 class CyberPet {
     constructor(name) {
         this._name = name;
@@ -83,6 +94,9 @@ class CyberPet {
 
     timePassing(duration) {
         for (let i = 0; i < duration; i++) {
+            if (this._isDead) {
+                break;
+            }
             this.incrementDay();
         }
     }
@@ -94,38 +108,35 @@ class CyberPet {
         this._boredom += 5;
 
         if (this.hunger >= 100) {
-            this._hunger = 100;
             this._HP -= 20;
             this._bodyType -= 10
         }
 
         if (this.thirst >= 100) {
-            this._thirst = 100;
             this._HP -= 20;
         }
 
 
-        if (this.boredom == 100) {
+        if (this.boredom >= 100) {
             this._HP -= 10;
-            this._boredom += 5;
         }
 
         if (this.hunger >= 85) {
             this._bodyType -= 5;
         }
 
-        if (this.bodyType >= 0) {
-            this._bodyType = 0;
-        }
-
-        if (this.bodyType <= 100) {
-            this._bodyType = 100;
-        }
-
         if (this.HP <= 0) {
-            this._HP = 0;
             this._isDead = true;
         }
+
+        this._hunger = normalise(this.hunger);
+        this._thirst = normalise(this.thirst);
+        this._boredom = normalise(this.boredom);
+        this._HP = normalise(this.HP);
+        this._bodyType = normalise(this.bodyType);
+
+
+        
         // this._HP = 100;
         // this._bodyType = 50;
         // remove this so it's not annoying when running timePassing?
@@ -136,15 +147,15 @@ class CyberPet {
     printStatus() {
         let status;
         if (this.isDead) {
-            status =`Day ${this.age}. ${this.name} is dead. Maybe you should revive it.`;
+            status =`Day ${this.age}. ${this.name} is dead. You could try to revive it.`;
         } else {
             status = `Day ${this.age}. ${this.name}`;
             if (this.HP > 80) {
-                status += " is doing well!";
+                status += "'s health is good!";
             } else if (this.HP < 20) {
-                status += " is not doing well!";
+                status += "'s health is not so great!";
             } else {
-                status += " is alright.";
+                status += "'s health is alright.";
             }
 
             if (this.hunger > 90) {
@@ -162,7 +173,7 @@ class CyberPet {
             if (this.boredom > 90) {
                 status += " It's pretty bored!";
             } else if (this.boredom < 20) {
-                status += " It's having a great time!";
+                status += " It's enjoying itself!";
             }
 
             if (this.bodyType > 90) {
@@ -212,22 +223,20 @@ class Cat extends CyberPet {
     }
 }
 
-
-
-
 let jon = new Dog("Jon");
 jon.incrementDay();
 jon.eat();
-jon.timePassing(10);
+jon.timePassing(20);
 console.log(jon.HP);
 
 
 let rosa = new Bunny("Rosa");
 rosa.incrementDay();
 rosa.hop();
-rosa.timePassing(10);
+rosa.timePassing(20);
+console.log(jon.HP);
 
 let donald = new Cat("Don");
 donald.incrementDay();
 donald.roam();
-donald.timePassing(10);
+donald.timePassing(20);
