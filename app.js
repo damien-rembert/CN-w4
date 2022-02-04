@@ -183,3 +183,46 @@ l = y - 100 * f;
 s = Math.floor(2.6 * m - 5.39) + Math.floor(l / 4) + Math.floor(f / 4) + d + l - 2 * f;
 x = s - (7 * Math.floor(s / 7));
 console.log(x);
+
+
+let weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Sat', 'Sunday'];
+// creating the variables
+let firstDay, secondDay, thirdDay, everyOtherDay;
+// using the spread operator
+[firstDay, secondDay, thirdDay, ...everyOtherDay] = weekDays;
+console.log(firstDay); // Monday
+console.log(secondDay); // Tuesday
+console.log(everyOtherDay); // [ 'Thursday', 'Friday', 'Sat', 'Sunday' ]
+
+/// importing the whole object (the two variables)
+// const importedFunctions = require('./export_examples.js');
+// OR, to import only that one var
+// const {name_of_the_var} = require('./export_examples.js');
+
+// name_of_the_var(2);
+// console.log(importedFunctions);
+
+// name_of_the_var = (number) => {
+//     console.log(number * 2);
+// };
+// name_of_another_var = () => {
+//     console.log("second variable");
+// };
+// name_of_third_var = "just a string";
+
+const osObj = require("os");
+const fsObj = require("fs");
+
+let userData = osObj.userInfo().username;
+console.log(userData);
+
+// console.log(fsObj);
+
+fsObj.appendFile("example.txt", `the username is ${userData}\n`, (error) => {
+    if (error) {
+        console.log(error);
+    } else {
+        console.log("it's all working");
+    }
+})
+

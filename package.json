@@ -1,0 +1,23 @@
+{
+  "name": "week_4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/damien-rembert/CN-w4.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/damien-rembert/CN-w4/issues"
+  },
+  "homepage": "https://github.com/damien-rembert/CN-w4#readme",
+  "devDependencies": {
+    "jest": "^27.4.7"
+  }
+}
